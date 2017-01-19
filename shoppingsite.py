@@ -100,14 +100,26 @@ def add_to_cart(melon_id):
     # - increment the count for that melon id by 1
     # - flash a success message
     # - redirect the user to the cart page
+     # if melon_id in
+
     if "cart" in session:
-        
+        shopping_cart = session["cart"]
+        print '****************', shopping_cart
+        if shopping_cart in cart:
+            melon_id = cart["shopping_cart"]
+            if "melon_id" in shopping_cart:
+                shopping_cart["melon_id"] += 1
+            else:
+                shopping_cart["melon_id"] = 1
+
+        else:
+            shopping_cart["melon_id"] = {}
+        #print shopping_cart
     else:
         session["cart"] = {}
-    if melon_id in cart:
 
-
-    return "Oops! This needs to be implemented!"
+    return redirect("/cart")
+    #return "Oops! This needs to be implemented!"
 
 
 @app.route("/login", methods=["GET"])
